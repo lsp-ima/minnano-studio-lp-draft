@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>みんなのスタジオ | LPデザイン案 3方向</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;background:#F2F0EB;color:#2A2A28;font-family:'Noto Sans JP',sans-serif;line-height:1.8;}
+  .page{max-width:520px;margin:0 auto;padding:48px 20px 80px;}
+  h1{font-size:22px;font-weight:900;margin:0 0 8px;}
+  .sub{color:#6b6f76;font-size:13.5px;margin:0 0 32px;}
+  .card{display:block;background:#fff;border-radius:16px;padding:22px;margin-bottom:16px;text-decoration:none;color:inherit;
+    box-shadow:0 4px 14px rgba(0,0,0,0.06);transition:transform .15s;}
+  .card:active{transform:scale(0.98);}
+  .tag{display:inline-block;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:10px;}
+  .card h2{font-size:17px;font-weight:900;margin:0 0 6px;}
+  .card p{font-size:13px;color:#666;margin:0;}
+  .arrow{float:right;color:#bbb;font-size:18px;}
+</style>
+</head>
+<body>
+<div id="pwgate" style="position:fixed;inset:0;z-index:99999;background:#111318;color:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column;font-family:sans-serif;padding:20px;text-align:center;">
+<div style="font-size:14px;margin-bottom:14px;color:#ccc;">パスワードを入力してください</div>
+<input id="pwinput" type="password" style="padding:12px 14px;border-radius:8px;border:none;font-size:16px;width:220px;text-align:center;" autofocus>
+<button id="pwbtn" type="button" style="margin-top:14px;padding:11px 28px;border-radius:20px;border:none;background:#06C755;color:#fff;font-weight:700;font-size:14px;">開く</button>
+<div id="pwerr" style="color:#ff8080;font-size:12px;margin-top:12px;display:none;">パスワードが違います</div>
+</div>
+<script>
+(function(){
+  var PW = "minnano2026";
+  var gate = document.getElementById('pwgate');
+  var input = document.getElementById('pwinput');
+  var btn = document.getElementById('pwbtn');
+  var err = document.getElementById('pwerr');
+  if (sessionStorage.getItem('mns_ok') === '1') { gate.remove(); return; }
+  document.documentElement.style.overflow = 'hidden';
+  function tryUnlock(){
+    if (input.value === PW) {
+      sessionStorage.setItem('mns_ok','1');
+      gate.remove();
+      document.documentElement.style.overflow = '';
+    } else {
+      err.style.display = 'block';
+    }
+  }
+  btn.addEventListener('click', tryUnlock);
+  input.addEventListener('keydown', function(e){ if(e.key === 'Enter') tryUnlock(); });
+})();
+</script>
+
+<div class="page">
+  <h1>みんなのスタジオ LPデザイン案</h1>
+  <p class="sub">3つの方向性を用意しました。タップして実際のページをご覧ください(スマホでの閲覧を想定したデザインです)。</p>
+
+  <a class="card" href="./LP案A_KPOPステージ.html">
+    <span class="arrow">›</span>
+    <span class="tag" style="background:#1a1830;color:#B9A9FF;">A案</span>
+    <h2>K-POPステージ</h2>
+    <p>ダーク×ネオン。K-POPのMV・ステージの世界観で、お子さん本人の「通いたい!」を最優先。</p>
+  </a>
+
+  <a class="card" href="./LP案B_淡色マガジン.html">
+    <span class="arrow">›</span>
+    <span class="tag" style="background:#EFE9DF;color:#8A7B63;">B案</span>
+    <h2>淡色・韓国マガジン</h2>
+    <p>余白と明朝体で上品に。おしゃれな保護者の方の美意識に響く落ち着いた路線。</p>
+  </a>
+
+  <a class="card" href="./LP案Cデイアンドステージ.html" style="border:2px solid #D85A30;">
+    <span class="arrow">›</span>
+    <span class="tag" style="background:#FFF0E8;color:#D9662F;">C案 おすすめ</span>
+    <h2>デイ&ステージ</h2>
+    <p>2幕構成。安心情報はあたたかいトーン、講師紹介と発表会だけ照明が落ちてステージ演出に。</p>
+  </a>
+</div>
+</body>
+</html>
